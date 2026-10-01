@@ -1,0 +1,63 @@
+:root, [data-theme='light'] {
+  --map-land: #f6ead9; --map-water: #bcd9e2; --map-park: #cfe2b8; --map-road: #ffffff; --map-block: #ead8c2;
+}
+[data-theme='dark'] {
+  --map-land: #24170f; --map-water: #1d3540; --map-park: #233220; --map-road: #3b2a1e; --map-block: #2f2016;
+}
+
+.location__grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center; }
+
+.map-preview__link {
+  position: relative;
+  display: block;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform 0.4s ease;
+}
+
+.map-preview__link:hover { transform: translateY(-4px); }
+.map-preview__svg { display: block; width: 100%; height: auto; transition: transform 0.8s ease; }
+.map-preview__link:hover .map-preview__svg { transform: scale(1.04); }
+
+.map-pin { position: absolute; left: 50%; top: 47%; transform: translate(-50%, -100%); color: var(--primary); filter: drop-shadow(0 6px 10px rgba(0,0,0,.25)); }
+.map-pin svg { fill: var(--accent); }
+.map-pin__pulse { position: absolute; left: 50%; bottom: -4px; width: 18px; height: 18px; border-radius: 50%; background: var(--primary); transform: translateX(-50%); opacity: .5; animation: pulse 2s ease-out infinite; }
+
+@keyframes pulse {
+  0% { transform: translateX(-50%) scale(.6); opacity: .6; }
+  100% { transform: translateX(-50%) scale(3.2); opacity: 0; }
+}
+
+.map-preview__label, .map-preview__hint {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.82rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.map-preview__label { top: 16px; left: 16px; font-weight: 500; }
+.map-preview__hint { bottom: 16px; right: 16px; color: var(--primary); }
+
+.location .eyebrow::after { display: none; }
+.location__address { font-style: normal; display: grid; margin-top: 18px; color: var(--muted); font-size: 1.05rem; }
+
+.timings { list-style: none; padding: 0; margin: 26px 0 30px; display: grid; gap: 10px; }
+.timings li { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; padding: 14px 18px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); }
+.timings svg { color: var(--accent); }
+.timings strong { font-weight: 500; }
+
+@media (max-width: 920px) {
+  .location__grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 420px) {
+  .timings li { grid-template-columns: auto 1fr; }
+  .timings strong { grid-column: 2; font-size: 0.9rem; }
+}

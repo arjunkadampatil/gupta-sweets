@@ -5,7 +5,9 @@ import FestiveBanner from '../components/FestiveBanner.jsx';
 import DownloadMenu from '../components/DownloadMenu.jsx';
 import Gallery from '../components/Gallery.jsx';
 import Reviews from '../components/Reviews.jsx';
+import LocationSection from '../components/LocationSection.jsx';
 import Faq from '../components/Faq.jsx';
+import Contact from '../components/Contact.jsx';
 
 export default function Home() {
   return (
@@ -17,7 +19,9 @@ export default function Home() {
       <DownloadMenu />
       <Gallery />
       <Reviews />
+      <LocationSection />
       <Faq />
+      <Contact />
     </main>
   );
 }
