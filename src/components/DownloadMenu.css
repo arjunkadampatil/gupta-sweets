@@ -1,0 +1,58 @@
+.menus__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px;
+}
+
+.pdf-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px 18px;
+  padding: 24px;
+  border-radius: 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.pdf-card::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  transition: transform 0.5s ease;
+}
+
+.pdf-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); }
+.pdf-card:hover::before { transform: scale(1.5); }
+
+.pdf-card__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 64px;
+  border-radius: 10px 18px 10px 10px;
+  background: linear-gradient(160deg, var(--primary), var(--primary-strong));
+  color: #fff8ef;
+}
+
+[data-theme='dark'] .pdf-card__icon { color: #1b0f0a; }
+
+.pdf-card__body { position: relative; }
+.pdf-card h3 { font-size: 1.25rem; }
+.pdf-card p { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+.pdf-card__meta { display: inline-block; margin-top: 8px; font-size: 0.75rem; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+.pdf-card__actions { position: relative; grid-column: 1 / -1; display: flex; gap: 10px; }
+.pdf-card__actions .btn { flex: 1; }
+
+@media (max-width: 400px) {
+  .menus__grid { grid-template-columns: 1fr; }
+}
