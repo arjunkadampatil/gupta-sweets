@@ -1,0 +1,109 @@
+.navbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.navbar--scrolled {
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 1px 0 var(--border);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+  gap: 16px;
+}
+
+.logo { display: inline-flex; align-items: center; gap: 10px; }
+.logo__text { font-family: 'Playfair Display', serif; font-size: 1.32rem; font-weight: 600; white-space: nowrap; }
+.logo__text strong { color: var(--primary); font-weight: 800; }
+
+.navbar__links {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__links a {
+  position: relative;
+  padding: 8px 12px;
+  font-size: 0.92rem;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.navbar__links a::after {
+  content: '';
+  position: absolute;
+  left: 12px; right: 12px; bottom: 2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.navbar__links a:hover,
+.navbar__links a.is-active { color: var(--text); }
+.navbar__links a.is-active::after,
+.navbar__links a:hover::after { transform: scaleX(1); }
+
+.navbar__actions { display: flex; align-items: center; gap: 10px; }
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.icon-btn:hover { transform: rotate(-8deg); border-color: var(--accent); }
+
+.navbar__toggle { display: none; }
+
+.mobile-menu {
+  position: fixed;
+  top: 76px;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 24px 20px 40px;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mobile-menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+
+.mobile-menu a:not(.btn) {
+  display: block;
+  padding: 14px 6px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu a.is-active { color: var(--primary); }
+
+@media (max-width: 1020px) {
+  .navbar__links { display: none; }
+  .navbar__toggle { display: grid; }
+}
+
+@media (max-width: 480px) {
+  .navbar .navbar__cta { display: none; }
+  .logo__text { font-size: 1.18rem; }
+}
