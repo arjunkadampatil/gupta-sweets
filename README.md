@@ -2,8 +2,8 @@
 
 A static showcase website for **Gupta Sweets**, a sweets and bakery brand, built with React. It has no cart, checkout, login or backend. The aim is a polished, responsive brand site with animations, light and dark themes, downloadable menus and clear contact actions.
 
-**Live site:** _add the Vercel/Netlify URL here after deploying_
-**Repository:** _add the GitHub URL here_
+**Live site:** _https://gupta-sweets-seven.vercel.app/_
+**Repository:** _https://github.com/arjunkadampatil/gupta-sweets_
 
 ![Hero, light mode](docs/screenshots/hero-light.jpg)
 
