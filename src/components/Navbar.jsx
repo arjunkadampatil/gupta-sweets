@@ -2,9 +2,10 @@ import './Navbar.css';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, Moon, Sun, X } from 'lucide-react';
 import Logo from './Logo.jsx';
 import { NAV_LINKS } from '../data/site.js';
+import { useTheme } from '../context/ThemeContext.jsx';
 
 // Plain anchors on the home page; client-side links elsewhere so there is no full reload.
 function NavAnchor({ id, onHome, ...props }) {
@@ -12,6 +13,7 @@ function NavAnchor({ id, onHome, ...props }) {
 }
 
 export default function Navbar() {
+  const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('home');
@@ -45,6 +47,8 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
 
+  const ThemeIcon = theme === 'dark' ? Sun : Moon;
+
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <nav className="container navbar__inner" aria-label="Main">
@@ -63,6 +67,19 @@ export default function Navbar() {
         </ul>
 
         <div className="navbar__actions">
+          <button
+            type="button"
+            className="icon-btn"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span key={theme} initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }} style={{ display: 'grid' }}>
+                <ThemeIcon size={19} />
+              </motion.span>
+            </AnimatePresence>
+          </button>
           <Link to="/order" className="btn btn--primary btn--sm navbar__cta">Order Now</Link>
           <button type="button" className="icon-btn navbar__toggle" onClick={() => setOpen((o) => !o)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="mobile-menu">
             {open ? <X size={20} /> : <Menu size={20} />}
